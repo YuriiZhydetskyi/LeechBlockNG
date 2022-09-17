@@ -644,11 +644,16 @@ function checkTab(id, isBeforeNav, isRepeat) {
 					} else {
 						gTabs[id].keyword = keyword;
 
+						let blockUrlsList = blockURL.split("\n");
+						let positionOfBlockUrlToRedirectOn = Math.floor(Math.random() * (blockUrlsList.length));
+
+						blockURL = blockUrlsList[positionOfBlockUrlToRedirectOn];	
+						
 						// Get final URL for block page
 						blockURL = getLocalizedURL(blockURL)
-								.replace(/\$K/g, keyword ? keyword : "")
-								.replace(/\$S/g, set)
-								.replace(/\$U/g, pageURLWithHash);
+							.replace(/\$K/g, keyword ? keyword : "")
+							.replace(/\$S/g, set)
+							.replace(/\$U/g, pageURLWithHash);
 
 						// Redirect page
 						browser.tabs.update(id, { url: blockURL });

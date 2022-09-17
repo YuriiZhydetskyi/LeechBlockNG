@@ -8,6 +8,7 @@ const BLOCKED_PAGE = "blocked.html";
 const DELAYED_PAGE = "delayed.html";
 const DEFAULT_BLOCK_URL = "blocked.html?$S&$U";
 const DELAYED_BLOCK_URL = "delayed.html?$S&$U";
+const NEW_LINE = "\n";
 const DEFAULT_ICON = { 16: "icons/leechblock16.png", 32: "icons/leechblock32.png" };
 const OVERRIDE_ICON = { 16: "icons/leechblock16o.png", 32: "icons/leechblock32o.png" };
 
@@ -317,7 +318,11 @@ function checkPosNegIntFormat(value) {
 // Check blocking page URL format
 //
 function checkBlockURLFormat(url) {
-	return INTERNAL_BLOCK_URL.test(url) || getParsedURL(url).page;
+	let listOfUrls = url.split(NEW_LINE);
+	for(let i = 0; i < listOfUrls.length; ++i)
+		if(!INTERNAL_BLOCK_URL.test(listOfUrls[i]) && !getParsedURL(listOfUrls[i]).page)
+			return false;
+	return true;
 }
 
 // Convert times to minute periods
