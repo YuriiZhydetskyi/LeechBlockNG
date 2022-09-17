@@ -181,7 +181,7 @@ function saveOptions(event) {
 		let limitOffset = $(`#limitOffset${set}`).val();
 		let delaySecs = $(`#delaySecs${set}`).val();
 		let reloadSecs = $(`#reloadSecs${set}`).val();
-		let blockURL = $(`#blockURL${set}`).val();
+		let blockURLs = $(`#blockURLs${set}`).val();
 
 		// Check field values
 		if (!checkTimePeriodsFormat(times)) {
@@ -214,10 +214,10 @@ function saveOptions(event) {
 			$("#alertBadSeconds").dialog("open");
 			return false;
 		}
-		if (!checkBlockURLFormat(blockURL)) {
+		if (!checkBlockURLsFormat(blockURLs)) {
 			$("#tabs").tabs("option", "active", (set - 1));
-			$(`#blockURL${set}`).focus();
-			$("#alertBadBlockURL").dialog("open");
+			$(`#blockURLs${set}`).focus();
+			$("#alertBadBlockURLs").dialog("open");
 			return false;
 		}
 	}
@@ -1102,15 +1102,15 @@ function handleKeyDown(event) {
 }
 
 function removeFromListOfBlockUrls(urlToRemove, set) {
-	let listOfBlockUrls = $(`#blockURL${set}`).val().split(NEW_LINE);
+	let listOfBlockUrls = $(`#blockURLs${set}`).val().split(NEW_LINE);
 	let indexToRemove = listOfBlockUrls.indexOf(urlToRemove);
 	if(indexToRemove >= 0)
 		listOfBlockUrls.splice(indexToRemove, 1);
-	$(`#blockURL${set}`).val(listOfBlockUrls.join(NEW_LINE));
+	$(`#blockURLs${set}`).val(listOfBlockUrls.join(NEW_LINE));
 }
 
 function addToListOfBlockUrls(urlToAdd, set) {
-	$(`#blockURL${set}`).val($(`#blockURL${set}`).val() + NEW_LINE + urlToAdd);
+	$(`#blockURLs${set}`).val($(`#blockURLs${set}`).val() + NEW_LINE + urlToAdd);
 }
 
 /*** STARTUP CODE BEGINS HERE ***/

@@ -528,7 +528,7 @@ function checkTab(id, isBeforeNav, isRepeat) {
 			let rollover = gOptions[`rollover${set}`];
 			let conjMode = gOptions[`conjMode${set}`];
 			let days = gOptions[`days${set}`];
-			let blockURL = gOptions[`blockURL${set}`];
+			let blockURLs = gOptions[`blockURLs${set}`];
 			let applyFilter = gOptions[`applyFilter${set}`];
 			let filterName = gOptions[`filterName${set}`];
 			let filterMute = gOptions[`filterMute${set}`];
@@ -605,7 +605,7 @@ function checkTab(id, isBeforeNav, isRepeat) {
 						log(`lockdown: ${lockdown}`);
 						log(`withinTimePeriods: ${withinTimePeriods}`);
 						log(`afterTimeLimit: ${afterTimeLimit}`);
-						log(`blockURL: ${blockURL}`);
+						log(`blockURLs: ${blockURLs}`);
 						if (blockRE) {
 							let res = blockRE.exec(pageURL);
 							if (res) {
@@ -644,10 +644,10 @@ function checkTab(id, isBeforeNav, isRepeat) {
 					} else {
 						gTabs[id].keyword = keyword;
 
-						let blockUrlsList = blockURL.split("\n");
+						let blockUrlsList = blockURLs.split("\n");
 						let positionOfBlockUrlToRedirectOn = Math.floor(Math.random() * (blockUrlsList.length));
 
-						blockURL = blockUrlsList[positionOfBlockUrlToRedirectOn];	
+						let blockURL = blockUrlsList[positionOfBlockUrlToRedirectOn];	
 						
 						// Get final URL for block page
 						blockURL = getLocalizedURL(blockURL)
